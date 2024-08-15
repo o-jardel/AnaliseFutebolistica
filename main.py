@@ -1,3 +1,4 @@
+#Jardel Ferreira GRR20231834
 import streamlit as st
 import pandas as pd
 import seaborn as sns
@@ -7,14 +8,8 @@ from scipy.stats import chi2_contingency
 
 # Carregar dados
 dados = pd.read_csv('brasileirao_serie_a.csv')
-
-dados.describe()
-
 dados_treino, dados_val = train_test_split(dados, test_size=0.3, random_state=42, shuffle=True)
-
 sns.set()
-
-
 
 st.title("Análise futeboslistica, mando de campo ganha jogo?")
 st.subheader("Dados do brasileirão entre os anos de 2003 e 2023")
@@ -22,10 +17,6 @@ st.text(" ")
 st.markdown("Realizei esta análise para identificar qual é a relação entre resultado das partidas e time mandante. Nessa análise podemos verificar que estatisticamente o time mantande ganha as partidas com maior frequência.")
 st.markdown("Aqui neste dashboard, exibimos os gráficos de relação entre essas grandezas para comprovarmos que esta relação é sim, bem presente.")
 st.markdown("Para saber mais sobre nossa pesquisa, clique no link a seguir para acessar nosso material com mais dados sobre o projeto: https://drive.google.com/file/d/10s9gvnuWKkdBHc7U-UlPV4vmN_UFIc24/view?usp=sharing")
-
-
-#aparece as colunas
-#dados_treino.columns
 
 #tratamento de dados
 
@@ -61,7 +52,8 @@ if st.button("Gerar gráfico para calcular a proporção de V/E/D para cada time
     plt.show()
     st.pyplot()
     st.text("Sendo -1: Derrota; 0: Empate; 1: Vitória.")
-
+    
+#segundo botão
 if st.button("Gerar gráfico para gráfico de barras que mostre a frequência de V/E/D para cada time mandante."):
 
     tabela_contingencia_mandante = pd.crosstab(dados_treino['time_mandante'], dados_treino['resultado'])
