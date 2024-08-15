@@ -61,7 +61,7 @@ if st.button("Gerar gráfico de resultados dos times mandantes"):
     plt.xlabel("Resultado")
     plt.ylabel("Time Mandante")
     plt.show()
-
+    st.pyplot()
 
 
 
