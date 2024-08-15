@@ -15,11 +15,11 @@ sns.set()
 
 
 
-st.title("Análise futeboslistica, idade ganha jogo?")
+st.title("Análise futeboslistica, mando de campo ganha jogo?")
 st.subheader("Dados do brasileirão entre os anos de 2003 e 2023")
 st.text(" ")
-st.markdown("Realizei esta análise para identificar qual é a média de idade ideal para um time de futebol marcar mais gols, e por consequência, ganhar mais jogos.")
-st.markdown("Aqui neste dashboard, exibimos os gráficos de relação entre gols marcados e a média de idade de jogos que ocorreram no futebol brasileiro.")
+st.markdown("Realizei esta análise para identificar qual é a relação entre resultado das partidas e time mandante.")
+st.markdown("Aqui neste dashboard, exibimos os gráficos de relação entre essas grandezas para comprovarmos que esta relação é sim, bem presente.")
 st.markdown("Para saber mais sobre nossa pesquisa, clique no link a seguir para acessar nosso material com mais dados sobre o projeto: https://drive.google.com/file/d/10s9gvnuWKkdBHc7U-UlPV4vmN_UFIc24/view?usp=sharing")
 
 
@@ -41,32 +41,26 @@ dados_treino['resultado'] = dados_treino.apply(
 
 
 #primeiro botão
-if st.button("Gerar Gráfico de relação entre média de idade e gols marcados por times mandantes"):
-    #   plt.figure(figsize=(8,8))
-    #   sns.regplot(dados_treino, y='idade_media_titular_mandante', x='gols_mandante')
-    #   plt.scatter('idade_media_titular_mandante', 'gols_mandante')
-    #   plt.xlabel('Gols Mandante')
-    #   plt.ylabel('Idade Média Titular Mandante')
-
+if st.button("Gerar gráfico de resultados dos times mandantes"):
 
     # Contagem de resultados para times mandantes
     contagem_mandante = dados_treino.groupby('time_mandante')['resultado'].value_counts().unstack().fillna(0)
-    #print("Contagem de Resultados para Times Mandantes:")
-    #print(contagem_mandante)
+    print("Contagem de Resultados para Times Mandantes:")
+    print(contagem_mandante)
 
 
 
     taxa_mandante = contagem_mandante.div(contagem_mandante.sum(axis=1), axis=0)
-    #print("Taxa de Resultados para Times Mandantes:")
-    #print(taxa_mandante)
+    print("Taxa de Resultados para Times Mandantes:")
+    print(taxa_mandante)
 
 
-    #plt.figure(figsize=(12, 8))
-    #sns.heatmap(contagem_mandante, annot=True, cmap="Blues", fmt=".0f")
-    #plt.title("Frequência de Resultados para Times Mandantes")
-    #plt.xlabel("Resultado")
-    #plt.ylabel("Time Mandante")
-    #plt.show()
+    plt.figure(figsize=(12, 8))
+    sns.heatmap(contagem_mandante, annot=True, cmap="Blues", fmt=".0f")
+    plt.title("Frequência de Resultados para Times Mandantes")
+    plt.xlabel("Resultado")
+    plt.ylabel("Time Mandante")
+    plt.show()
 
 
 
