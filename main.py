@@ -51,22 +51,22 @@ if st.button("Gerar Gráfico de relação entre média de idade e gols marcados 
 
     # Contagem de resultados para times mandantes
     contagem_mandante = dados_treino.groupby('time_mandante')['resultado'].value_counts().unstack().fillna(0)
-    print("Contagem de Resultados para Times Mandantes:")
-    print(contagem_mandante)
+    #print("Contagem de Resultados para Times Mandantes:")
+    #print(contagem_mandante)
 
 
 
     taxa_mandante = contagem_mandante.div(contagem_mandante.sum(axis=1), axis=0)
-    print("Taxa de Resultados para Times Mandantes:")
-    print(taxa_mandante)
+    #print("Taxa de Resultados para Times Mandantes:")
+    #print(taxa_mandante)
 
 
-    plt.figure(figsize=(12, 8))
-    sns.heatmap(contagem_mandante, annot=True, cmap="Blues", fmt=".0f")
-    plt.title("Frequência de Resultados para Times Mandantes")
-    plt.xlabel("Resultado")
-    plt.ylabel("Time Mandante")
-    plt.show()
+    #plt.figure(figsize=(12, 8))
+    #sns.heatmap(contagem_mandante, annot=True, cmap="Blues", fmt=".0f")
+    #plt.title("Frequência de Resultados para Times Mandantes")
+    #plt.xlabel("Resultado")
+    #plt.ylabel("Time Mandante")
+    #plt.show()
 
 
 
@@ -76,7 +76,7 @@ if st.button("Gerar Gráfico de relação entre média de idade e gols marcados 
     tabela_contingencia_mandante = pd.crosstab(dados_treino['time_mandante'], dados_treino['resultado'])
 
     chi2_mandante, p_mandante, _, _ = chi2_contingency(tabela_contingencia_mandante)
-    print(f"Teste Qui-Quadrado para Time Mandante: Chi2 = {chi2_mandante:.2f}, p-valor = {p_mandante:.4f}")
+    #print(f"Teste Qui-Quadrado para Time Mandante: Chi2 = {chi2_mandante:.2f}, p-valor = {p_mandante:.4f}")
 
 
 
@@ -99,7 +99,7 @@ if st.button("Gerar Gráfico de relação entre média de idade e gols marcados 
 
     # Exibe o gráfico
     plt.show()
-
+    st.pyplot()
 
 
 
